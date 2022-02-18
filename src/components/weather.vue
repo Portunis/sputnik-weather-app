@@ -66,16 +66,15 @@ export default {
   props: {
     weather: {
       type: Object,
-      require: true
+      require: true,
     },
     isLoading: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   created() {
     this.intervalId = setInterval(() => (this.date = Date.now()), 1000);
     this.intervalTime = setInterval(() => (this.time = Date.now()), 1000);
-
   },
   computed: {
     localeDate() {

@@ -3,16 +3,16 @@
     <UiCard class="nasa__card">
       <div v-if="isLoading">Загружаю информацию...</div>
       <div v-if="!nasa">Не смогли загрузить инфиормацию :(</div>
-    <div v-if="!isLoading && nasa">
-      <h2>Интересный факт</h2>
-      <div class="nasa__title">
-        <img :src="`${nasa.url}`" :alt="`${nasa.title}`"/>
-        <h3>{{ nasa.title }}</h3>
+      <div v-if="!isLoading && nasa">
+        <h2>Интересный факт</h2>
+        <div class="nasa__title">
+          <img :src="`${nasa.url}`" :alt="`${nasa.title}`" />
+          <h3>{{ nasa.title }}</h3>
+        </div>
+        <div class="nasa__details">
+          <p>{{ nasa.explanation }}</p>
+        </div>
       </div>
-      <div class="nasa__details">
-        <p>{{ nasa.explanation }}</p>
-      </div>
-    </div>
     </UiCard>
   </div>
 </template>
@@ -25,11 +25,11 @@ export default {
   props: {
     nasa: {
       type: Object,
-      require: true
+      require: true,
     },
     isLoading: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
 };
 </script>

@@ -9,7 +9,7 @@
       />
       <ui-button class="search-box__button" @click="runSearch">Найти</ui-button>
     </div>
-    <div  v-if="!isLoading" class="results">
+    <div v-if="!isLoading" class="results">
       <UiCard
         class="results__card"
         v-for="item in results.results"
@@ -24,8 +24,12 @@
         </div>
       </UiCard>
     </div>
-    <div v-if="isLoading" class="results-error"><h2>Загружаю фотографии...</h2></div>
-    <div v-if="notFound" class="results-error"><h2>Ничего не найдено :(</h2></div>
+    <div v-if="isLoading" class="results-error">
+      <h2>Загружаю фотографии...</h2>
+    </div>
+    <div v-if="notFound" class="results-error">
+      <h2>Ничего не найдено :(</h2>
+    </div>
   </div>
 </template>
 <script>
@@ -46,7 +50,6 @@ export default {
     };
   },
   computed: {
-
     notFound() {
       return (
         this.results && this.results.results && !this.results.results.length
@@ -60,26 +63,25 @@ export default {
 
     async searchPhotos(searchQuery) {
       try {
-
-        this.isLoading = true
-      const { data } = await axios.get(
-        `https://api.unsplash.com/search/collections?query=${searchQuery}`,
-        {
-          params: {
-            page: this.page,
-          },
-          headers: {
-            Authorization:
-              "Client-ID M6IhqP2ZPQF7UafDeaHohGqblMIlZ4u7zqGQfmspNIA",
-          },
+        this.isLoading = true;
+        const { data } = await axios.get(
+          `https://api.unsplash.com/search/collections?query=${searchQuery}`,
+          {
+            params: {
+              page: this.page,
+            },
+            headers: {
+              Authorization:
+                "Client-ID M6IhqP2ZPQF7UafDeaHohGqblMIlZ4u7zqGQfmspNIA",
+            },
+          }
+        );
+        if (data) {
+          this.results = data;
         }
-      );
-      if (data) {
-        this.results = data;
-      }
-      } catch (e){
-        console.log(e)
-      }finally {
+      } catch (e) {
+        console.log(e);
+      } finally {
         this.isLoading = false;
       }
     },
