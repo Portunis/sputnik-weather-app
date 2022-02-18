@@ -24,6 +24,18 @@
         </div>
       </UiCard>
     </div>
+    <UiCard
+      v-if="placeholder"
+      class="results__card"
+      :style="{
+        backgroundImage: 'url(' + require('@/assets/img/placeholder.png') + ')',
+      }"
+    >
+      <div class="card__info">
+        <h2>Я фотография</h2>
+        <p>Имя автора: А я твой автор</p>
+      </div>
+    </UiCard>
     <div v-if="isLoading" class="results-error">
       <h2>Загружаю фотографии...</h2>
     </div>
@@ -43,6 +55,7 @@ export default {
   components: { UiCard, UiButton, UiInput },
   data() {
     return {
+      placeholder: true,
       isLoading: false,
       searchQuery: "",
       page: 1,
@@ -63,6 +76,7 @@ export default {
 
     async searchPhotos(searchQuery) {
       try {
+        this.placeholder = false;
         this.isLoading = true;
         const { data } = await axios.get(
           `https://api.unsplash.com/search/collections?query=${searchQuery}`,
