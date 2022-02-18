@@ -7,14 +7,17 @@
 </template>
 
 <style lang="scss">
-*,html{
+*,
+html {
   padding: 0;
   margin: 0;
-
 }
-body{
-
-  background: linear-gradient(90deg, rgba(148,187,233,1) 25%, rgba(238,174,202,1) 86%);
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 187, 233, 1) 25%,
+    rgba(238, 174, 202, 1) 86%
+  );
   height: 100%;
 }
 
@@ -25,10 +28,7 @@ body{
   text-align: center;
   color: #2c3e50;
 
-
   padding: 30px;
-
-
 }
 
 #nav {
